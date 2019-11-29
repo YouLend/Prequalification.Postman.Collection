@@ -1,0 +1,2651 @@
+{
+  "info": {
+    "_postman_id": "34222239-247c-4e1d-9c9e-03cab3513fd1",
+    "name": "Prequalification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Prequalification complete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Name is Acme\", function () {",
+              "    pm.expect(pm.response.json().companyName).to.equal(\"Acme\");",
+              "});",
+              "pm.test(\"Overall credit risk score is greater than 1\", function () {",
+              "    pm.expect(pm.response.json().overallCreditRiskScore).to.be.above(0);",
+              "});",
+              "pm.test(\"Override credit risk score is 0\", function () {",
+              "    pm.expect(pm.response.json().overrideCreditRiskScore).to.equal(0.0);",
+              "});",
+              "pm.test(\"Three loan options\", function(){",
+              "    pm.expect(pm.response.json().loanOptions).to.have.lengthOf(3);",
+              "});",
+              "pm.test(\"First loan option has largest loan amount, 20% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[0].fundedAmount).to.be.above(pm.response.json().loanOptions[1].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].fundedAmount).to.be.above(pm.response.json().loanOptions[2].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].fee).to.be.above(pm.response.json().loanOptions[1].fee);",
+              "    pm.expect(pm.response.json().loanOptions[0].fee).to.be.above(pm.response.json().loanOptions[2].fee);",
+              "    pm.expect(pm.response.json().loanOptions[0].loanAmount).to.be.above(pm.response.json().loanOptions[1].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].loanAmount).to.be.above(pm.response.json().loanOptions[2].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].sweep).to.be.equal(20.0);",
+              "    pm.expect(pm.response.json().loanOptions[0].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "pm.test(\"Second loan option has second largest loan amount, 15% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[1].fundedAmount).to.be.below(pm.response.json().loanOptions[0].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].fundedAmount).to.be.above(pm.response.json().loanOptions[2].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].fee).to.be.below(pm.response.json().loanOptions[0].fee);",
+              "    pm.expect(pm.response.json().loanOptions[1].fee).to.be.above(pm.response.json().loanOptions[2].fee);",
+              "    pm.expect(pm.response.json().loanOptions[1].loanAmount).to.be.below(pm.response.json().loanOptions[0].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].loanAmount).to.be.above(pm.response.json().loanOptions[2].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].sweep).to.be.equal(15.0);",
+              "    pm.expect(pm.response.json().loanOptions[1].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "pm.test(\"Third loan option has smallest loan amount, 10% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[2].fundedAmount).to.be.below(pm.response.json().loanOptions[0].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].fundedAmount).to.be.below(pm.response.json().loanOptions[1].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].fee).to.be.below(pm.response.json().loanOptions[0].fee);",
+              "    pm.expect(pm.response.json().loanOptions[2].fee).to.be.below(pm.response.json().loanOptions[1].fee);",
+              "    pm.expect(pm.response.json().loanOptions[2].loanAmount).to.be.below(pm.response.json().loanOptions[0].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].loanAmount).to.be.below(pm.response.json().loanOptions[1].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].sweep).to.be.equal(10.0);",
+              "    pm.expect(pm.response.json().loanOptions[2].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "326e346b-1285-436d-88fb-83236df2c58e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Company Name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Name is null\", function () {",
+              "    pm.expect(pm.response.json().companyName).to.equal(null);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "257aca1a-8de1-4574-b910-00e261ac4872",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Company Name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Name is null\", function () {",
+              "    pm.expect(pm.response.json().companyName).to.equal(\"\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "52758733-7f1e-44cd-8127-dc81f8398fe5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Company Number",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Number is null\", function () {",
+              "    pm.expect(pm.response.json().companyNumber).to.equal(null);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "f4c7df47-a8cf-4327-a2f2-5ca1c7565698",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Company Number",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Number is null\", function () {",
+              "    pm.expect(pm.response.json().companyNumber).to.equal(null);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "051fb9ca-a44b-43ba-84c8-52ad725273f2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Company Type is empty error\", function () {",
+              "    pm.expect(pm.response.json().CompanyType[0]).to.equal(\"'Company Type' must not be empty.\");",
+              "});",
+              "pm.test(\"Company Type is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CompanyType[1]).to.equal(\"The company type is invalid. Valid company types are ltd, plc, llp, dac, soleTrader, aps, as, ks, ivs, is and enkeltmandsvirksomhed\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ec022f50-d5ab-4fc5-b91f-1262c91190fd",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification invalid Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Company Type is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CompanyType[0]).to.equal(\"The company type is invalid. Valid company types are ltd, plc, llp, dac, soleTrader, aps, as, ks, ivs, is and enkeltmandsvirksomhed\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "949f39d4-0edb-4939-8162-6e792f4347cc",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"guff\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification ltd Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "d5c6ca83-a56b-41a7-87c3-88bf3f0200ea",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification plc Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "36099fd3-f268-4c84-9e65-aaaf82900f36",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification llp Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ad5eb7fb-1db7-4b29-9ad0-6d5b46e2d997",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"llp\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification dac Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7c8fabc1-390b-4b3c-9609-8c6ad583e1a2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"dac\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification soleTrader Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "554ee4a3-1fb7-4d74-8d81-2df835d4bc2d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"soleTrader\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification aps Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "76b85ab5-c467-4328-8ea1-717e8f2a5016",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"aps\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification as Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "90007d3a-4194-411a-8520-84dccbd63ec5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"as\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification ks Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "30b14c2e-aa22-472d-a3ab-ce2bab18181a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ks\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification ivs Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "fa2e7f34-6e23-4858-a461-24e8d8a33d9b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ivs\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification is Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "846aa12c-cf09-4aac-8e37-4516b1ef6ee2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"is\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification enkeltmandsvirksomhed Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "50bf4d4d-61f2-40f2-a93c-a55cdf90940f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"enkeltmandsvirksomhed\",\r\n\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Company Type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Company Type is empty error\", function () {",
+              "    pm.expect(pm.response.json().CompanyType[0]).to.equal(\"'Company Type' must not be empty.\");",
+              "});",
+              "pm.test(\"Company Type is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CompanyType[1]).to.equal(\"The company type is invalid. Valid company types are ltd, plc, llp, dac, soleTrader, aps, as, ks, ivs, is and enkeltmandsvirksomhed\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "98fab1eb-d27d-46d5-8ba3-d209d623d8c6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing mid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"mid is null\", function () {",
+              "    pm.expect(pm.response.json().mid).to.equal(null);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "1a31c3b0-d154-4df3-aa1e-634a9d6c8630",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty mid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"mid is null\", function () {",
+              "    pm.expect(pm.response.json().mid).to.equal(\"\");",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "deb9588d-f78f-4900-a750-a1009bbb9ab8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing merchant ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"thirdPartyMerchantId error\", function () {",
+              "    pm.expect(pm.response.json().ThirdPartyMerchantId[0]).to.equal(\"'Third Party Merchant Id' must not be empty.\");",
+              "});",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "8746287c-21be-4148-8174-6dd522bbdc32",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty merchant ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"thirdPartyMerchantId error\", function () {",
+              "    pm.expect(pm.response.json().ThirdPartyMerchantId[0]).to.equal(\"'Third Party Merchant Id' must not be empty.\");",
+              "});",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7954e882-644c-465e-ab1c-cfcda482f663",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Company Website",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "67b17424-35d3-43fe-9437-4d8f69d8b283",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Company Website",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7798c1e8-a89b-4093-a637-44ca91cf0799",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification invalid Company Website",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Company Website is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CompanyWebsite[0]).to.equal(\"The specified condition was not met for 'Company Website'.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "027686e0-8cbf-4959-8911-569ee0a611c2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"guff\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Company Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "6fedc0ac-893e-443c-82b1-8acf0a045996",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Company Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "eadb4b7d-3139-4b9d-a38c-fa408f0ba714",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification invalid Company Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "3b087153-813a-4cff-ab08-79c9bbc2d63d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"guff\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is empty error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[0]).to.equal(\"'Country ISO Code' must not be empty.\");",
+              "});",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[1]).to.equal(\"The country code is invalid. It must be a valid country code. Valid codes are GBR, DNK and IRE\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "40531f56-c0a0-4f5a-84d0-29c832e33beb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is empty error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[0]).to.equal(\"'Country ISO Code' must not be empty.\");",
+              "});",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[1]).to.equal(\"The country code is invalid. It must be a valid country code. Valid codes are GBR, DNK and IRE\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "65dab521-07ce-4cec-899d-1066dc197ae5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification not supported Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[0]).to.equal(\"The country code is invalid. It must be a valid country code. Valid codes are GBR, DNK and IRE\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "df974044-166f-47f5-871f-afa93d535219",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"MEX\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification invalid Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().CountryISOCode[0]).to.equal(\"The country code is invalid. It must be a valid country code. Valid codes are GBR, DNK and IRE\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "015e11a0-9f10-4918-b070-a2ca30bb47bf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"PFT\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification DNK Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "bb766650-83fc-49cc-9312-8e2dd59734b9",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"DNK\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification IRE Country ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c968c491-f109-43e1-b227-2a0eeb833dba",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"DNK\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is empty error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"'Loan Currency ISO Code' must not be empty.\");",
+              "});",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[1]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "2c0b458a-6bb5-42d7-9fc5-f7af886d381a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is empty error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"'Loan Currency ISO Code' must not be empty.\");",
+              "});",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[1]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c64e6964-23e0-4308-9d7a-ce1440b9d3e2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification not supported Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ecd2a7b9-f9eb-4961-93f4-54d5fd2760b0",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"HKD\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification invalid Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Country ISO is invalid error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "87838d5b-ce64-4e9b-b61a-645d9c1e80aa",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"PFT\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification DKK Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Loan option 1 currency code is DKK\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[0].currencyISOCode).to.be.equal(\"DKK\");",
+              "});",
+              "pm.test(\"Loan option 2 currency code is DKK\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[1].currencyISOCode).to.be.equal(\"DKK\");",
+              "});",
+              "pm.test(\"Loan option 3 currency code is DKK\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[2].currencyISOCode).to.be.equal(\"DKK\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "1ce5d0c1-e06e-467f-8f1b-e7a0effa88ba",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"DKK\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification EUR Loan Currency ISO Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Loan option 1 currency code is EUR\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[0].currencyISOCode).to.be.equal(\"EUR\");",
+              "});",
+              "pm.test(\"Loan option 2 currency code is EUR\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[1].currencyISOCode).to.be.equal(\"EUR\");",
+              "});",
+              "pm.test(\"Loan option 3 currency code is EUR\", function () {",
+              "    pm.expect(pm.response.json().loanOptions[2].currencyISOCode).to.be.equal(\"EUR\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "d0414017-672a-4124-a96d-ed8e17a76e04",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"EUR\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing sic",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "35a1d556-98b0-40c9-8b1e-c423bd1321b4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty sic",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "5f592976-8f20-484f-8c2f-e7f3bb421f67",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing mcc",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "149ea626-949d-4e9c-9051-6b35114194da",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty mcc",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "56a80aed-858a-4e6d-afae-7296026769b6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification missing Months Trading",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Months Trading is missing\", function () {",
+              "    pm.expect(pm.response.json().MonthsTrading[0]).to.equal(\"'Months Trading' must not be empty.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "8f85ce37-8d88-4e06-aaa6-58efe48006ba",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 0 Months Trading",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Months Trading is missing\", function () {",
+              "    pm.expect(pm.response.json().MonthsTrading[0]).to.equal(\"'Months Trading' must not be empty.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "4f59bcbc-6bbb-4b86-a828-9715a9fe78d6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 0,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 1 Months Trading",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "91d31a9d-0803-49bc-903f-cf2377651052",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 1,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 2 Months Trading",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "36ddc6e5-f827-45e7-9b60-5e123d136984",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 2,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 3 Months Trading",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "3d3d6158-b637-45ad-ba61-0fda3166a357",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification no Financial Data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Financial Data is missing\", function () {",
+              "    pm.expect(pm.response.json().FinancialData[0]).to.equal(\"'Financial Data' must not be empty.\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "23a1ba29-e4f3-4f0f-9dd3-a050e73fc444",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification empty Financial Data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Financial Data is missing\", function () {",
+              "    pm.expect(pm.response.json().FinancialData[0]).to.equal(\"You must provide at least one item of financial data\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "5ef1bf86-0307-42bb-b25e-5d93ca7a0ac7",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 0 Monthly Card Revenue",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "",
+              "pm.test(\"Financial Data is missing\", function () {",
+              "    pm.expect(pm.response.json().FinancialData[0]).to.equal(\"You must provide at least one item of financial data\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ca129ca3-bc10-43f3-a82c-81fabeae85ef",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 0\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification 1 Monthly Card Revenue",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "4f2f0a96-5aee-44ba-9a41-46e64fd455e2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification no Significant Persons",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c863eb73-f4df-47c9-bdd7-058e9d0d5f49",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  }\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons no First Name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "cbc12169-24a4-4274-a69d-9753f05c8743",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n    \"significantPersons\": [\r\n    {\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons no Surname",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ac8418a9-1727-4ba3-83c7-bbba61f82dc3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n    \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons no Address",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "8c345a96-826b-4619-9c1d-81a2fae6e3e9",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n    \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n\t  \"surname\": \"Jones\",\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Line1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "2e660f75-2b5a-4c64-80ae-b4d0e4f4fdb4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Line2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "bea37f1a-a148-44b2-aad9-034315d96d2a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Line3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "0deaf3bb-9736-49e9-863d-e115ad13003b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"A line\",\r\n        \"line2\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address Line1 only",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ce0955d2-68df-4ef7-83dc-c7c6efc4e19a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"A line\",\r\n\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no City",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "464b60da-3454-43c0-9720-1a70ff5f569e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Region",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c44a9bb6-a714-4dd2-8538-cc83018fff27",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Area Code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e073be99-a7ca-4a83-84e4-3bbb51d6b7a4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n\t\t\"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons Address no Country",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "6c970062-1be4-4810-8e50-29f9f418b84f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"region\": \"London\",\r\n        \"city\": \"London\",        \r\n        \"areaCode\": \"1234\"\r\n      },\r\n      \"dateOfBirth\": \"2011-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons no DoB",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c1a7d8a3-91cd-4f15-892b-0faf8d03e916",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",        \r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      }\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons very old DoB",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "2d8e4e7b-05b8-4fad-b4e6-45ba09c688d8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",        \r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },      \r\n    \"dateOfBirth\": \"1899-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    },
+    {
+      "name": "Prequalification Significant Persons future DoB",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c00ea08c-df0b-4a26-bdbf-620294e5c33f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",        \r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },      \r\n    \"dateOfBirth\": \"2099-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+        },
+        "url": "https://staging.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": {
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik0wUXdOMEl5TnpRMVJrRXhNa1pGTlVWRU5UQTJRalV6UWtRMVJUY3dORE0xUVVVM05rTkVRZyJ9.eyJpc3MiOiJodHRwczovL3lvdWxlbmQtc3RhZy5ldS5hdXRoMC5jb20vIiwic3ViIjoiRDBJQlEwblRrTVlEM2FEU041dzJ3YjlENEpSTFZrNGxAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vc3RhZ2luZy55b3VsZW5kYXBpLmNvbS9wcmVxdWFsaWZpY2F0aW9uIiwiaWF0IjoxNTc1MDI0ODMxLCJleHAiOjE1NzUxMTEyMzEsImF6cCI6IkQwSUJRMG5Ua01ZRDNhRFNONXcyd2I5RDRKUkxWazRsIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.sQ6FVMni5TZwoiXgjBAHESKNwZ_3lxaMzCSeof8qME1u4jAs28B_AkRN7WdXcVPG4kEQ3k43nKWys0XsVY8Zie8Sy4NofdPon7FU7CgTlezzLBfzCmGbAT2YmVwcROwOYRP5KPt17rdTnHEPu-2BPq-50NEuo4WJ3EFkZKHRzfO4crKwAqLIJSqckSdcHMWeKViPff4wByyVJqWNwHNVvV-vXfKpq_nV8tNZAVembVcrJAPijdpk7ZpzgJqDZa1CyRTF1CJj0mBA6C9y-Vd-vz25ZRO1yB5P74b1ThQuZY8cq5VoHdScNF_5MU7sbwHWQrOGZgN7icN20aihBMS1qA"
+    }
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "d283da33-9590-4fb9-a603-d30e2698d003",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "813e76ef-6224-4949-9c0b-67619ef6df4b",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
