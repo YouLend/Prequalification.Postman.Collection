@@ -237,7 +237,7 @@
           "mode": "raw",
           "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"Acme.com\",\r\n  \"contactEmailAddress\": \"me@Acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
-        "url": "https://staging.youlendapi.com/prequalification/Requests"
+        "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
       "response": []
     },
@@ -2650,7 +2650,7 @@
   ],
   "variable": [
     {
-      "id": "e364f011-f6bd-42e4-9b5d-2d5a7ca7fcfe",
+      "id": "8db42c4f-3fa9-4a5d-9c54-29dbb9e10049",
       "key": "host",
       "value": "staging",
       "type": "string"
