@@ -1161,7 +1161,7 @@
           "mode": "raw",
           "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
-        "url": "https://staging.youlendapi.com/prequalification/Requests"
+        "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
       "response": []
     },
@@ -1202,7 +1202,7 @@
           "mode": "raw",
           "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
-        "url": "https://staging.youlendapi.com/prequalification/Requests"
+        "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
       "response": []
     },
@@ -2650,7 +2650,7 @@
   ],
   "variable": [
     {
-      "id": "585b0565-485f-4605-ab9c-4941227f1cbc",
+      "id": "36323288-34a4-4702-a931-b7ac34b6a502",
       "key": "host",
       "value": "staging",
       "type": "string"
