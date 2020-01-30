@@ -16,7 +16,7 @@
               "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
               "",
               "pm.test(\"Company Name is Acme\", function () {",
-              "    pm.expect(pm.response.json().companyName).to.equal(\"Acme\");",
+              "    pm.expect(pm.response.json().companyName).to.equal(\"JOHN LEWIS PLC\");",
               "});",
               "pm.test(\"Overall credit risk score is greater than 1\", function () {",
               "    pm.expect(pm.response.json().overallCreditRiskScore).to.be.above(0);",
@@ -79,7 +79,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 12,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 200000,\r\n    \r\n        \"paymentData\": [\r\n      {\r\n        \"paymentDate\": \"2020-01-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n            {\r\n        \"paymentDate\": \"2019-12-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n                  {\r\n        \"paymentDate\": \"2019-11-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n                  {\r\n        \"paymentDate\": \"2019-10-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n                  {\r\n        \"paymentDate\": \"2019-09-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n                  {\r\n        \"paymentDate\": \"2019-08-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      }\r\n    ],\r\n    \"monthlyValueOfPurchaseTransactions\": 1000000,\r\n    \"purchaseData\": [\r\n      {\r\n        \"purchaseDate\": \"2020-01-30T11:04:00.715Z\",\r\n        \"amount\": 1000000,\r\n        \"currencyISOCode\": \"GBP\",\r\n        \"category\": \"string\"\r\n      }\r\n    ],\r\n    \"monthlyRevenueFromInvoices\": 10000,\r\n    \"invoiceData\": [\r\n      {\r\n        \"invoiceDate\": \"2020-01-30T11:04:00.715Z\",\r\n        \"amount\": 100000,\r\n        \"currencyISOCode\": \"GBP\",\r\n        \"daysDurationOfInvoice\": 20,\r\n        \"category\": \"string\"\r\n      }\r\n    ]\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -2623,7 +2623,7 @@
   "auth": {
     "type": "bearer",
     "bearer": {
-      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlEwWTBSVGcwUXpFNFEwWkRRVVF6TkRORU9EZzJOelJDTXpkQk5FWXpSVFpFUkROQ1Jqa3hOZyJ9.eyJpc3MiOiJodHRwczovL3lvdWxlbmQtZGV2LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhZlRFQ0hVY2xxUFQ4OU5pZk05MFJqQVl6M0R5Rk9YQ0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYueWxsZW5kaW5nYXBpLmNvbSIsImlhdCI6MTU4MDMwMTQ3MiwiZXhwIjoxNTgwMzg3ODcyLCJhenAiOiJhZlRFQ0hVY2xxUFQ4OU5pZk05MFJqQVl6M0R5Rk9YQyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.Hh-2C68qHfeVJ6sSRnVR4mC1CCQYVowyBr_vGf6tvqd8bcFdoFkF56jZx-QnZUDi3JMnfgW1_3aj_vNzTSeOZq26ObgEd2y1-GNXmxNoEbbekJwMmYdAvYsIfPaxIDAGKMtxi2C0qtiSU9pPIYNBdZZSe6PmV8jQ5nXt9dcLGPkAHstcod4TtOkMTgpBjutIHSz2R3K0wL1DZxZRpIUT7M7-GxUXNr_ksNT10LitsPe7j8C9BLgV0zvqdvlQQDe75eSsOolELOFWTttMl9tff-Unz0KAUPTUI7jDah0YKrhBbuz343ByecHbhGrqBuWIi3YTjLHaqyMVyqql6ttWpg"
+      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik0wUXdOMEl5TnpRMVJrRXhNa1pGTlVWRU5UQTJRalV6UWtRMVJUY3dORE0xUVVVM05rTkVRZyJ9.eyJpc3MiOiJodHRwczovL3lvdWxlbmQtc3RhZy5ldS5hdXRoMC5jb20vIiwic3ViIjoiRDBJQlEwblRrTVlEM2FEU041dzJ3YjlENEpSTFZrNGxAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vc3RhZ2luZy55b3VsZW5kYXBpLmNvbS9wcmVxdWFsaWZpY2F0aW9uIiwiaWF0IjoxNTgwMzk0NTc4LCJleHAiOjE1ODA0ODA5NzgsImF6cCI6IkQwSUJRMG5Ua01ZRDNhRFNONXcyd2I5RDRKUkxWazRsIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.uAicjZhI5c9c_kq6ny0r0zasY6bQYfByqr9wSvuGvZgf5Wb0HhgvJS6auKhH9CYqAKfGFQB2I4TKtlkzIYQCZ9l4qndBhGZDRJJBL3PdTGfMxcutbxmD_44oBtPyVVHIAWF4r3kssZoYsmAayMYNmmX_n9PWpuhL7_wFSICJZzKBF-yPkwtV01tkO_KuVCHZ-5EhmBf2QymtO6eIDFd_cpPQeMHxF2A9rCUdUdZb4OXmii-MKM_vjuepJP3Yk6kyxoV-5UGDGby-_2YTj9FJN79ZrMtU2sBuCrsEZ1ACpsDLPV4_s8Ns1Mmd7Eqhia6GhsiLYwmunbwaBSP9GFXcbw"
     }
   },
   "event": [
@@ -2650,7 +2650,7 @@
   ],
   "variable": [
     {
-      "id": "8e46ef05-6c1e-4a86-b673-77be7cdfaa95",
+      "id": "02dc07fa-98a0-4b74-bacb-8e2de035d93d",
       "key": "host",
       "value": "staging",
       "type": "string"
