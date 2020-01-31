@@ -2505,7 +2505,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"region\": \"London\",\r\n        \"city\": \"London\",        \r\n        \"areaCode\": \"1234\"\r\n      },\r\n      \"dateOfBirth\": \"2011-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n      \t\"line1\": \"A line\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"region\": \"London\",\r\n        \"city\": \"London\",        \r\n        \"areaCode\": \"1234\"\r\n      },\r\n      \"dateOfBirth\": \"2011-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -2650,7 +2650,7 @@
   ],
   "variable": [
     {
-      "id": "7343abc8-0d83-48c8-af84-7ad6d2559fa2",
+      "id": "db7bddd0-5090-40c7-b9e9-4d17e935a68f",
       "key": "host",
       "value": "staging",
       "type": "string"
