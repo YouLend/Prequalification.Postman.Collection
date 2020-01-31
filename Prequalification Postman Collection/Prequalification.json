@@ -132,11 +132,7 @@
           "script": {
             "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
             "exec": [
-              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
-              "",
-              "pm.test(\"Company Name is null\", function () {",
-              "    pm.expect(pm.response.json().companyName).to.equal(\"\");",
-              "});"
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(422); });"
             ],
             "type": "text/javascript"
           }
@@ -2650,7 +2646,7 @@
   ],
   "variable": [
     {
-      "id": "1d40c7f7-b7db-4f83-bad1-baee1362eb98",
+      "id": "e34b0ea6-1a0d-4ff0-9adb-14ebe57a45f7",
       "key": "host",
       "value": "staging",
       "type": "string"
