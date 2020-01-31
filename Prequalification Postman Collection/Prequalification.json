@@ -1920,7 +1920,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"enkeltmandsvirksomhed \",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 3,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -1959,7 +1959,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"Merchant ID\",\r\n  \"mid\": \"123456789\",\r\n  \"companyName\": \"Acme\",\r\n  \"companyNumber\": \"123456\",\r\n  \"companyType\": \"ltd\",\r\n  \"companyWebsite\": \"acme.com\",\r\n  \"companyEmail\": \"me@acme.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"111\",\r\n  \"mccCode\": \"222\",\r\n  \"monthsTrading\": 3,\r\n\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -2650,7 +2650,7 @@
   ],
   "variable": [
     {
-      "id": "d8940b50-f19f-49a7-b3e4-12c64eea25b0",
+      "id": "1154e761-6896-45ef-bcdd-c411674111de",
       "key": "host",
       "value": "staging",
       "type": "string"
