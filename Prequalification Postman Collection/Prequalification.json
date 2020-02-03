@@ -1396,10 +1396,7 @@
             "exec": [
               "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
               "pm.test(\"Country ISO is empty error\", function () {",
-              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"'Loan Currency ISO Code' must not be empty.\");",
-              "});",
-              "pm.test(\"Country ISO is invalid error\", function () {",
-              "    pm.expect(pm.response.json().LoanCurrencyISOCode[1]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The currency code is invalid. It must be an ISO 4217 currency code. Valid codes are GBP, EUR and DKK\");",
               "});"
             ],
             "type": "text/javascript"
@@ -1436,8 +1433,8 @@
             "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
             "exec": [
               "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
-              "pm.test(\"Country ISO is invalid error\", function () {",
-              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
+              "pm.test(\"Country ISO is empty error\", function () {",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The currency code is invalid. It must be an ISO 4217 currency code. Valid codes are GBP, EUR and DKK\");",
               "});"
             ],
             "type": "text/javascript"
@@ -2637,7 +2634,7 @@
   ],
   "variable": [
     {
-      "id": "ad7c5ac7-6c35-4211-bd75-1f158c2fdb1e",
+      "id": "f9f4c2dd-a795-4af0-bed3-5ba6cc4851f9",
       "key": "host",
       "value": "staging",
       "type": "string"
