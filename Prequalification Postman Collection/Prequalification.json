@@ -2098,7 +2098,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 1\r\n  }\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000\r\n  }\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -2639,7 +2639,7 @@
   ],
   "variable": [
     {
-      "id": "796bb963-3857-4f34-a4b6-d10ffb8f5c54",
+      "id": "97f9f592-b63f-433a-9914-213a5d81fa90",
       "key": "host",
       "value": "staging",
       "type": "string"
