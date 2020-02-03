@@ -206,7 +206,7 @@
               "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
               "",
               "pm.test(\"Company Number is invalid error\", function () {",
-              "    pm.expect(pm.response.json().CompanyType[0]).to.equal(\"TThe length of 'Company Number' must be at least 6 characters. You entered 0 characters.\");",
+              "    pm.expect(pm.response.json().CompanyNumber[0]).to.equal(\"The length of 'Company Number' must be at least 6 characters. You entered 0 characters.\");",
               "});"
             ],
             "type": "text/javascript"
@@ -2643,7 +2643,7 @@
   ],
   "variable": [
     {
-      "id": "974d360c-e157-44e6-997d-492dab3dac36",
+      "id": "28134a89-23c9-466d-a24d-a2b1742dfdc6",
       "key": "host",
       "value": "staging",
       "type": "string"
