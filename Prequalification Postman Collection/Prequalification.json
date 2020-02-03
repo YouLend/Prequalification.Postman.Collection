@@ -2076,7 +2076,7 @@
           "script": {
             "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
             "exec": [
-              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
               ""
             ],
             "type": "text/javascript"
@@ -2639,7 +2639,7 @@
   ],
   "variable": [
     {
-      "id": "97f9f592-b63f-433a-9914-213a5d81fa90",
+      "id": "1520121b-cf07-405a-a004-07446a97f05c",
       "key": "host",
       "value": "staging",
       "type": "string"
