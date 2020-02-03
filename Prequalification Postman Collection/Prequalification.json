@@ -1357,11 +1357,9 @@
             "exec": [
               "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
               "pm.test(\"Country ISO is empty error\", function () {",
-              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"'Loan Currency ISO Code' must not be empty.\");",
+              "    pm.expect(pm.response.json().LoanCurrencyISOCode[0]).to.equal(\"The currency code is invalid. It must be an ISO 4217 currency code. Valid codes are GBP, EUR and DKK\");",
               "});",
-              "pm.test(\"Country ISO is invalid error\", function () {",
-              "    pm.expect(pm.response.json().LoanCurrencyISOCode[1]).to.equal(\"The specified condition was not met for 'Loan Currency ISO Code'.\");",
-              "});"
+              ""
             ],
             "type": "text/javascript"
           }
@@ -2639,7 +2637,7 @@
   ],
   "variable": [
     {
-      "id": "1b77cf9c-e6bb-4f6f-b2cd-b353090018af",
+      "id": "ad7c5ac7-6c35-4211-bd75-1f158c2fdb1e",
       "key": "host",
       "value": "staging",
       "type": "string"
