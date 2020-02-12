@@ -1271,7 +1271,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"enkeltmandsvirksomhed \",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"PFT\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"mid\": \"JLEWIS01\",\r\n  \"companyName\": \"JOHN LEWIS PLC\",\r\n  \"companyNumber\": \"00233462\",\r\n  \"companyType\": \"plc\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"contactEmailAddress\": \"johnj@johnlewis.com\",\r\n  \"countryISOCode\": \"PFT\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"sicCode\": \"47190\",\r\n  \"mccCode\": \"FOI3101130001\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n    \"monthlyCardRevenue\": 2000000 \r\n  },\r\n  \"significantPersons\": [\r\n    {\r\n      \"firstName\": \"Bob\",\r\n      \"surname\": \"Jones\",\r\n      \"address\": {\r\n        \"line1\": \"53 Street\",\r\n        \"line2\": \"A line\",\r\n        \"line3\": \"Another One\",\r\n        \"city\": \"London\",\r\n        \"region\": \"London\",\r\n        \"areaCode\": \"1234\",\r\n        \"country\": \"UK\"\r\n      },\r\n      \"dateOfBirth\": \"1980-08-16T13:11:28.223Z\"\r\n    }\r\n  ]\r\n}"
         },
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
@@ -1846,7 +1846,7 @@
           "script": {
             "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
             "exec": [
-              "pm.test(\"Status code is 422\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
               ""
             ],
             "type": "text/javascript"
@@ -2607,7 +2607,7 @@
   "auth": {
     "type": "bearer",
     "bearer": {
-      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik0wUXdOMEl5TnpRMVJrRXhNa1pGTlVWRU5UQTJRalV6UWtRMVJUY3dORE0xUVVVM05rTkVRZyJ9.eyJpc3MiOiJodHRwczovL3lvdWxlbmQtc3RhZy5ldS5hdXRoMC5jb20vIiwic3ViIjoiRDBJQlEwblRrTVlEM2FEU041dzJ3YjlENEpSTFZrNGxAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vc3RhZ2luZy55b3VsZW5kYXBpLmNvbS9wcmVxdWFsaWZpY2F0aW9uIiwiaWF0IjoxNTgwNzQwNTQ3LCJleHAiOjE1ODA4MjY5NDcsImF6cCI6IkQwSUJRMG5Ua01ZRDNhRFNONXcyd2I5RDRKUkxWazRsIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.d_LzilaGmGBFY_2PeUdyxySisMUhGOe4LDp0TKZMdY5xqH1OA4ey5PkoU-FxjAQw7gG9Pusd8Of8bdhSUW38kEov04xHoSp_Tb7Sw3prSpUJ17ZijJV_UJgdysTQsXvuKZYIXyggO0Oqn7isdhtDwRZ6lmLEDpPN7Os9cRWtWuEURc9rQMTKHr7lJyBSUwSd-TADIzYS59ylKIgoOFRIlkaYt6nkr-m7sYB1tNzBq6QYmO3kNyXUofldbYyLycWKvEDO3crvgQa5vy3OHHzg6TMp5OswKi24PcorrmcEbGaoEXy7-yWmK3QybxBCmKn8nQnOhce_rYtGYq7CXW8NNg"
+      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik0wUXdOMEl5TnpRMVJrRXhNa1pGTlVWRU5UQTJRalV6UWtRMVJUY3dORE0xUVVVM05rTkVRZyJ9.eyJpc3MiOiJodHRwczovL3lvdWxlbmQtc3RhZy5ldS5hdXRoMC5jb20vIiwic3ViIjoiRDBJQlEwblRrTVlEM2FEU041dzJ3YjlENEpSTFZrNGxAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vc3RhZ2luZy55b3VsZW5kYXBpLmNvbS9wcmVxdWFsaWZpY2F0aW9uIiwiaWF0IjoxNTgxNTAzMjY4LCJleHAiOjE1ODE1ODk2NjgsImF6cCI6IkQwSUJRMG5Ua01ZRDNhRFNONXcyd2I5RDRKUkxWazRsIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.dhsNF1PzkiHvDmMVSQGPnEz9UzHa-ywSKkpvXHczk-VUb0GJOMqiB-zouQ7KLASPG8g9pjw9lgciPb2DlncFg0QYqfAC4sXeEJGKnmMgXhvwW9r9Kp1X1eOwGmGvAGX5nfuiwGmbMZyDiwpyfrEs7JfYnc8rAa0-iyyhlM-3oNmws2PTt-UlPl-GyzqHzHdDrH-CNi9ghqRXVAhU7my5yc9IpR1Y4HhjBBgj9Tt32qe70NR3uxCyy2BYkJrifNNxALQ9S0hfT0aGAvHBLogKSksCYvqGHybRl_bCXvRsbeTV54eKkMDk6syrNdFSZsxqWl32tYiGmKgaDHKY__vIMA"
     }
   },
   "event": [
@@ -2634,7 +2634,7 @@
   ],
   "variable": [
     {
-      "id": "7085276b-6d9b-4743-9a5e-8e8155ea6b0f",
+      "id": "544144f4-f114-4c67-8b66-0cbf484dbf88",
       "key": "host",
       "value": "staging",
       "type": "string"
