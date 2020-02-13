@@ -2922,6 +2922,86 @@
         "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
       },
       "response": []
+    },
+    {
+      "name": "Prequalification 12 month payment data, website, minimum",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c7c4d148-75b2-47ef-ac40-85d704502a20",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Company Name is John Lewis\", function () {",
+              "    pm.expect(pm.response.json().companyName).to.equal(\"JOHN LEWIS PLC\");",
+              "});",
+              "pm.test(\"Overall credit risk score is greater than 1\", function () {",
+              "    pm.expect(pm.response.json().overallCreditRiskScore).to.be.above(0);",
+              "});",
+              "pm.test(\"Override credit risk score is 0\", function () {",
+              "    pm.expect(pm.response.json().overrideCreditRiskScore).to.equal(0.0);",
+              "});",
+              "pm.test(\"Three loan options\", function(){",
+              "    pm.expect(pm.response.json().loanOptions).to.have.lengthOf(3);",
+              "});",
+              "pm.test(\"First loan option has largest loan amount, 20% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[0].fundedAmount).to.be.above(pm.response.json().loanOptions[1].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].fundedAmount).to.be.above(pm.response.json().loanOptions[2].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].fee).to.be.above(pm.response.json().loanOptions[1].fee);",
+              "    pm.expect(pm.response.json().loanOptions[0].fee).to.be.above(pm.response.json().loanOptions[2].fee);",
+              "    pm.expect(pm.response.json().loanOptions[0].loanAmount).to.be.above(pm.response.json().loanOptions[1].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].loanAmount).to.be.above(pm.response.json().loanOptions[2].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[0].sweep).to.be.equal(20.0);",
+              "    pm.expect(pm.response.json().loanOptions[0].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "pm.test(\"Second loan option has second largest loan amount, 15% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[1].fundedAmount).to.be.below(pm.response.json().loanOptions[0].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].fundedAmount).to.be.above(pm.response.json().loanOptions[2].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].fee).to.be.below(pm.response.json().loanOptions[0].fee);",
+              "    pm.expect(pm.response.json().loanOptions[1].fee).to.be.above(pm.response.json().loanOptions[2].fee);",
+              "    pm.expect(pm.response.json().loanOptions[1].loanAmount).to.be.below(pm.response.json().loanOptions[0].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].loanAmount).to.be.above(pm.response.json().loanOptions[2].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[1].sweep).to.be.equal(15.0);",
+              "    pm.expect(pm.response.json().loanOptions[1].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "pm.test(\"Third loan option has smallest loan amount, 10% sweep, and GBP\", function(){",
+              "    pm.expect(pm.response.json().loanOptions[2].fundedAmount).to.be.below(pm.response.json().loanOptions[0].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].fundedAmount).to.be.below(pm.response.json().loanOptions[1].fundedAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].fee).to.be.below(pm.response.json().loanOptions[0].fee);",
+              "    pm.expect(pm.response.json().loanOptions[2].fee).to.be.below(pm.response.json().loanOptions[1].fee);",
+              "    pm.expect(pm.response.json().loanOptions[2].loanAmount).to.be.below(pm.response.json().loanOptions[0].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].loanAmount).to.be.below(pm.response.json().loanOptions[1].loanAmount);",
+              "    pm.expect(pm.response.json().loanOptions[2].sweep).to.be.equal(10.0);",
+              "    pm.expect(pm.response.json().loanOptions[2].currencyISOCode).to.be.equal(\"GBP\");",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "063305e8-408d-4364-b236-7623b1db221f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"thirdPartyMerchantId\": \"JLEWIS01\",\r\n  \"companyType\": \"soleTrader\",\r\n  \"companyWebsite\": \"johnlewis.com\",\r\n  \"countryISOCode\": \"GBR\",\r\n  \"loanCurrencyISOCode\": \"GBP\",\r\n  \"monthsTrading\": 120,\r\n  \"financialData\": {\r\n\"paymentData\": [\r\n      {\r\n        \"paymentDate\": \"2020-02-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n      {\r\n        \"paymentDate\": \"2020-01-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n      {\r\n        \"paymentDate\": \"2019-12-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n      {\r\n        \"paymentDate\": \"2019-11-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n      {\r\n        \"paymentDate\": \"2019-10-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"\r\n      },\r\n      {\r\n        \"paymentDate\": \"2019-09-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n    {\r\n        \"paymentDate\": \"2019-08-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n     {\r\n        \"paymentDate\": \"2019-07-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n     {\r\n        \"paymentDate\": \"2019-06-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n     {\r\n        \"paymentDate\": \"2019-05-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n     {\r\n        \"paymentDate\": \"2019-04-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     },\r\n     {\r\n        \"paymentDate\": \"2019-03-01T10:55:09.307Z\",\r\n        \"amount\": 10000,\r\n        \"currencyISOCode\": \"GBP\"    \r\n     }\r\n\r\n    ]\r\n  }\r\n  \r\n}"
+        },
+        "url": "https://{{host}}.youlendapi.com/prequalification/Requests"
+      },
+      "response": []
     }
   ],
   "auth": {
@@ -2954,7 +3034,7 @@
   ],
   "variable": [
     {
-      "id": "2004c86b-b966-43a6-be31-ec1de0ed665c",
+      "id": "8f47f4e8-7395-498b-8700-749ef1e71680",
       "key": "host",
       "value": "staging",
       "type": "string"
