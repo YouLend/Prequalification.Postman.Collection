@@ -2684,7 +2684,7 @@
       "response": []
     },
     {
-      "name": "Prequalification 6 month payment data, websitte, minimum",
+      "name": "Prequalification 6 month payment data, website, minimum",
       "event": [
         {
           "listen": "test",
@@ -3034,7 +3034,7 @@
   ],
   "variable": [
     {
-      "id": "8f47f4e8-7395-498b-8700-749ef1e71680",
+      "id": "aea90b10-47c4-4ef2-a5f3-7dda95a2f723",
       "key": "host",
       "value": "staging",
       "type": "string"
